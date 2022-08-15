@@ -1,20 +1,28 @@
 // Задание 1
 function getArrayParams(arr) {
-  let min =arr[0], 
-      max = min, 
+  let min =  Infinity
+      max = -Infinity, 
       sum = 0, 
       avg = 0;
 
   // Ваш код
-  for (let i = 0; i < arr.length; i++ ) {
+  min = Math.min(...arr);
+  max = Math.max(...arr);
+  
+ /* 
+ for (let i = 0; i < arr.length; i++ ) {
     if (arr[i] > max) max = arr[i];
     if (arr[i] < min) min = arr[i];
     sum += arr[i];
   }
 
-   avgCount = +(sum/arr.length);
+   avgCount = sum / arr.length;
    avgCount.toFixed(2);
    avg = Number(avgCount);
+   */
+
+  avgCount = (arr.reduce((a, b) => a + b, 0) / arr.length).toFixed(2);
+  avg = Number(avgCount);
 
   return { min: min, max: max, avg: avg };
 }
@@ -23,24 +31,24 @@ console.log( getArrayParams([-99, 99, 10]));
 
 // Задание 2
 
+// Сумма элементов массива
 function worker(arr) {
-  let sum = 0;
-
-  // Ваш код
-  for ( let i = 0; i < arr.length; i++ ) {
-    sum += arr[i];
+  let sum =0;
+  for (i = 0; i < arr.length; i++) {
+  sum += arr[i];
   }
-
   return sum;
 }
 //console.log(worker([4, 5, 6]))
 
 
+//Применение функции к массиву
+
 function makeWork(arrOfArr, func) {
   let max = func(arrOfArr[0]);
 
   // Ваш кода
-  //for ...
+  
   for (let i = 0; i < arrOfArr.length; i++){
     if(func(arrOfArr[i] > max)){
       max = func(arrOfArr[i]);
