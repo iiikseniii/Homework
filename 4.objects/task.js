@@ -12,11 +12,10 @@ Student.prototype.setSubject = function (subjectName){
  this.subject = subjectName;
 }
 
-let marks = [];
+
 // Оценка
 Student.prototype.addMark = function(mark){
   if(this.marks === undefined){ 
-    let marks =[];
     marks.push(mark);
     } else {
       marks.push(mark);
@@ -30,15 +29,11 @@ Student.prototype.addMarks = function(...mark){
 
 //Среднее арифметическое оценок
 /*
-Student.prototype.getAverage = (arr) => {
-  const sum = marks.reduce((acc, mark) => acc + mark, 0);
-  return sum / marks.length;
-};
-
 Student.prototype.getAverage = function(marks){
   let average = marks.reduce((a, b) => a + b, 0) / marks.length;
   return average;
-}*/
+}
+*/
 Student.prototype.getAverage = function(marks){
   let sum = 0;
   for( let i =0; i< marks.length; i++){
