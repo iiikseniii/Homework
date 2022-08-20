@@ -50,7 +50,7 @@ function makeWork(arrOfArr, func) {
   // Ваш кода
   
   for (let i = 0; i < arrOfArr.length; i++){
-    if(func(arrOfArr[i] > max)){
+    if(func(arrOfArr[i]) > max){
       max = func(arrOfArr[i]);
     }
   }
