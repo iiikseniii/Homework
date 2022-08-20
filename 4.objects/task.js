@@ -16,31 +16,36 @@ Student.prototype.setSubject = function (subjectName){
 // Оценка
 Student.prototype.addMark = function(mark){
   if(this.marks === undefined){ 
-    marks.push(mark);
+    this.marks = [];
+    this.marks.push(mark);
     } else {
-      marks.push(mark);
+      this.marks.push(mark);
       // добавить вторую и последующие оценки в массив
     }
 }
 
 Student.prototype.addMarks = function(...mark){
+  this.marks=[];
   this.marks = mark;
 }
 
 //Среднее арифметическое оценок
-/*
-Student.prototype.getAverage = function(marks){
-  let average = marks.reduce((a, b) => a + b, 0) / marks.length;
-  return average;
-}
-*/
-Student.prototype.getAverage = function(marks){
-  let sum = 0;
-  for( let i =0; i< marks.length; i++){
-    sum += marks[i];
+
+Student.prototype.getAverage = function(){
+
+  if (this.marks === undefined){ 
+    this.marks = [];
   }
-  avg= sum / marks.length;
+
+  let sum = 0;
+
+  for(let i = 0; i < this.marks.length; i++){
+    sum +=  this.marks[i];
+  }
+  
+  return avg= sum / this.marks.length;
 }
+
 
 //  отчисление 
 Student.prototype.exclude = function(reason){
