@@ -93,7 +93,8 @@ class Library {
         let findIndexBook = this.books.findIndex(element => element.name === bookName);
         if(findIndexBook !== -1){
             let giveBook = this.books[findIndexBook];
-            return this.books.splice(findIndexBook, 1);
+            this.books.splice(findIndexBook, 1);
+            return giveBook;
          } else{
             return null;
         }
@@ -106,52 +107,62 @@ class Library {
 class Student{
     constructor(name){
       this.name = name;
+      this.marks = { 
+        algebra:[],
+        geometry:[],
+        biology: [],
+      };
      }
    
   
-    addMark(mark, sbj){
+    addMark(mark, subject){
         if(this.marks === undefined){ 
-        this.marks = [];
+            this.marks = { 
+                algebra:[],
+                geometry:[],
+                biology: [],
+            };
         }
-        if((mark >= 1) && (mark <=5)){
-           this.marks.push(mark);
-        } else{
-          console.log("Ошибка, оценка должна быть числом от 1 до 5")
+
+        if((mark <= 1) || (mark >5)){
+            console.log("Ошибка, число от 1 до 5");
         }
+          //Существование предмета
+        if((subject in this.marks) === false){
+            console.log("Ошибка, предмета не существует")
+        }
+
+       return this.marks[subject].push(mark);
    
     }
     
     getAverageBySubject(sbj){
-       if(sbj === undefined){console.log("Несуществующий предмет")}
-   }
-
+        if((sbj in this.marks) === false){
+                console.log("Несуществующий предмет")
+            }
+        let arr = this.marks[sbj];
+        let sum = arr.reduce((acc, num) => acc + num, 0);
+        let avg = sum / arr.length;
+        return console.log(`Средняя балл по предмету ${sbj} : ${avg}`)
+    }        
     getAverage(){
-
+        let arr1 = this.marks.algebra;
+        let arr2 = this.marks.geometry;
+        let arr3 = this.marks.biology;
+        
+        let superArr =[].concat(arr1,arr2, arr3)
+        let sum = superArr.reduce((acc, num) => acc + num, 0);
+        let avgAll = sum / superArr.length;
+        return console.log(`Средний балл по всем предметам ${avgAll}`)
     }
 
     exclude(reason){
-     delete this.marks;
-     delete this.subject;
+        delete this.marks;
+        this.exclude = reason;
     }
   }
 /*
-   class Subject {
-      constructor(subject){
-        this.subject = subjectName;
-        this.marks =[];
-      }
-  
-      addMark(mark, subject){
-        if(subject === undefined){console.log("Несуществующий предмет")}
-  
-        if((mark >= 1) && (mark <=5)){
-          this.marks.push(mark);
-        }else{
-          console.log("Ошибка, оценка должна быть числом от 1 до 5")
-        }
-      }
-    }
-  
+
   const student1 = new Subject(5,"geology");
   const student2 = new Student("Дима Петухов");
   
