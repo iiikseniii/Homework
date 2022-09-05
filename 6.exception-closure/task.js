@@ -6,73 +6,28 @@ function parseCount (value){
     }
 }
 
-// let value ="o9o";
-// console.log(parseCount(value));
-// value = "9b0";
-// console.log(parseCount(value));
-
-
 function validateCount(val){
-    let parseCount = function(){
 
+    let parseCount = function(){
         let y = Number.parseInt(val);
         if(isNaN(y)) throw new Error("Невалидное значение")
         else { 
             return y;
         }
     }
-    // return parseCount()
-    try{
-        parseCount();
-    }catch(err){
-        console.log(err.message =" PltcmНевалидное значение" );
-    }
+   return parseCount()
 }
 
-    
-// try{
-//     validateCount();
-// }catch(err){
-//     console.log(err.message =" PltcmНевалидное значение" );
-// }
-// function validateCount(val){
-  
-//     try {
-//       let parseCount = function(){
-//            let y = Number.parseInt(val);
-//            if(isNaN(y)) throw new Error("Невалидное значение")
-//            else{ 
-//              return y;
-//                }
-//        }
-//       return parseCount();
-//         } catch(err){
-//             err.message = "Невалидное значение";
-//             console.log(err.message);
-            
-//         }
-// }
 
-/*
-function validateCount(val){
-  
-    function parseCount(){
-          let y = Number.parseInt(val);
-          if(isNaN(y)) throw new Error("Невалидное значение")
-          else{ return y }
-      }
-    return parseCount();
-  }
-*/
-// function validCount(value){
-//     function parseCount (value){
-//         let x = Number.parseInt(value);
-//         if(isNaN(x)) throw new Error("Невалидное значение")
-//         else{
-//             return x
-//         }
-//     }
-// }
+try{
+    parseCount();
+}catch(err){
+    console.log(err);
+    console.log (err.message);
+}
+
+
+
 
 
 ///2 Треугольник
@@ -127,4 +82,5 @@ try{
 }catch(e){
     console.log(e.message);
 }
+
 */
