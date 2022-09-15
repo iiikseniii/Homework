@@ -28,7 +28,6 @@ class PrintEditionItem {
     }
 }
 
-
 class Magazine extends PrintEditionItem {
     constructor (name, releaseDate, pagesCount){
         super(name, releaseDate, pagesCount);
@@ -101,39 +100,21 @@ class Library {
     }
 } 
 
-
 //3
-
 class Student{
     constructor(name){
       this.name = name;
-      this.marks = { 
-        algebra:[],
-        geometry:[],
-        biology: [],
-      };
+      this.marks = {};
      }
    
-  
     addMark(mark, subject){
-        if(this.marks === undefined){ 
-            this.marks = { 
-                algebra:[],
-                geometry:[],
-                biology: [],
-            };
-        }
-
         if((mark <= 1) || (mark >5)){
             console.log("Ошибка, число от 1 до 5");
+        } else if(Object.keys(this.marks).includes(subject)){
+            this.marks.[subject].push(mark);
+        }else{
+            this.marks[subject]=[mark];
         }
-          //Существование предмета
-        if((subject in this.marks) === false){
-            console.log("Ошибка, предмета не существует")
-        }
-
-       return this.marks[subject].push(mark);
-   
     }
     
     getAverageBySubject(sbj){
@@ -146,14 +127,14 @@ class Student{
         return console.log(`Средняя балл по предмету ${sbj} : ${avg}`)
     }        
     getAverage(){
-        let arr1 = this.marks.algebra;
-        let arr2 = this.marks.geometry;
-        let arr3 = this.marks.biology;
-        
-        let superArr =[].concat(arr1,arr2, arr3)
-        let sum = superArr.reduce((acc, num) => acc + num, 0);
-        let avgAll = sum / superArr.length;
-        return console.log(`Средний балл по всем предметам ${avgAll}`)
+        let sum = 0;
+        let marksLength = 0;
+        for( let key in this.marks) {
+            sum += Object.values(this.marks[key]).reduce(((acc, mark) => acc + mark),0);
+            marksLength += this.marks[key].length;
+        }
+        let avg = sum /marksLength;
+        return console.log(`Средний балл по всем предметам ${avg}`)
     }
 
     exclude(reason){
@@ -161,13 +142,3 @@ class Student{
         this.exclude = reason;
     }
   }
-/*
-
-  const student1 = new Subject(5,"geology");
-  const student2 = new Student("Дима Петухов");
-  
-  const classBook = "Типовой школьный журнал";
-  student1.addMark(2,"biology")
-  student1.addMark(4,"geology")
-  console.log(student1)
-  */
