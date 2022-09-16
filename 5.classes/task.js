@@ -76,16 +76,11 @@ class Library {
     addBook(book){
       if(book.state > 30)
       this.books.push(book)
-    
     }
 
     findBookBy(type, value) {
        let findBook = this.books.find(i => i[type] === value);
-        if(findBook !== undefined){
-        return findBook;
-       }  else{
-        return null;
-       }
+       return findBook || null; 
     }
 
     giveBookByName(bookName) {
@@ -111,21 +106,24 @@ class Student{
         if((mark <= 1) || (mark >5)){
             console.log("Ошибка, число от 1 до 5");
         } else if(Object.keys(this.marks).includes(subject)){
-            this.marks.[subject].push(mark);
+            this.marks[subject].push(mark);
         }else{
             this.marks[subject]=[mark];
         }
     }
     
     getAverageBySubject(sbj){
-        if((sbj in this.marks) === false){
-                console.log("Несуществующий предмет")
-            }
+        if(!(sbj in this.marks) ){
+            console.log("Несуществующий предмет")
+            return;
+        }
         let arr = this.marks[sbj];
         let sum = arr.reduce((acc, num) => acc + num, 0);
         let avg = sum / arr.length;
-        return console.log(`Средняя балл по предмету ${sbj} : ${avg}`)
-    }        
+        console.log(`Средняя балл по предмету ${sbj} : ${avg}`);
+        return;
+    }
+
     getAverage(){
         let sum = 0;
         let marksLength = 0;
@@ -134,7 +132,8 @@ class Student{
             marksLength += this.marks[key].length;
         }
         let avg = sum /marksLength;
-        return console.log(`Средний балл по всем предметам ${avg}`)
+        console.log(`Средний балл по всем предметам ${avg}`)
+        return; 
     }
 
     exclude(reason){
