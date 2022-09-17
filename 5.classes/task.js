@@ -121,7 +121,7 @@ class Student{
         let sum = arr.reduce((acc, num) => acc + num, 0);
         let avg = sum / arr.length;
         console.log(`Средняя балл по предмету ${sbj} : ${avg}`);
-        return;
+        return avg;
     }
 
     getAverage(){
@@ -133,7 +133,7 @@ class Student{
         }
         let avg = sum /marksLength;
         console.log(`Средний балл по всем предметам ${avg}`)
-        return; 
+        return avg; 
     }
 
     exclude(reason){
